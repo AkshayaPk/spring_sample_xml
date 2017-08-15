@@ -17,6 +17,18 @@ public class CustomerServiceImpl implements CustomerService {
 	/* (non-Javadoc)
 	 * @see com.pluralsight.service.CustomerService#findAll()
 	 */
+	
+	/**
+	 * We are going to define a constructor with one argument which is of CustomerRepository reference.
+	 */
+	public CustomerServiceImpl()
+	{
+		
+	}
+	public CustomerServiceImpl(CustomerRepository customerRepository)
+	{
+		this.customerRepository=customerRepository;
+	}
 	@Override
 	public List<Customer> findAll() {
 		return customerRepository.findAll();

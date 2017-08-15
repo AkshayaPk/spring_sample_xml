@@ -5,13 +5,22 @@
 
 <bean name="customerRepository" class="com.pluralsight.repository.HibernateCustomerRespositoryImpl"></bean>
 
-<bean name="customerService" class="com.pluralsight.service.CustomerServiceImpl">
+<bean name="customerService" class="com.pluralsight.service.CustomerServiceImpl"  autowire="byType">
 <!-- The below line represents the wiring of our repository tier to our service tier so
      that any number of repository instances can be used with different implementations and we 
      wouldnt need to change our code accordingly for every implementation.
  -->
  <!-- The below line also represents setter injection byName 
  where we have given the name as customerRepository in the setter attribute -->
-<property name="customerRepository" ref="customerRepository"></property>
+
+ <!-- <property name="customerRepository" ref="customerRepository"></property> -->
+
+ <!-- The below line describes the constructor injection with index as 0 defining only 1 parameter
+ for the constructor which references the customerRepository reference -->
+
+<!-- <constructor-arg index="0" ref="customerRepository"></constructor-arg> -->
+
+<!-- I am going to comment out both the <constructor-arg> and <property tag and add autowire feature
+to the customerService bean> -->
 </bean>
 </beans>
