@@ -4,8 +4,8 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 <bean name="customerRepository" class="com.pluralsight.repository.HibernateCustomerRespositoryImpl"></bean>
-
-<bean name="customerService" class="com.pluralsight.service.CustomerServiceImpl"  autowire="byType">
+<!-- Setting the scope to Singleton & prototype for customerService -->
+<bean name="customerService" class="com.pluralsight.service.CustomerServiceImpl"  autowire="byType" scope="prototype">
 <!-- The below line represents the wiring of our repository tier to our service tier so
      that any number of repository instances can be used with different implementations and we 
      wouldnt need to change our code accordingly for every implementation.

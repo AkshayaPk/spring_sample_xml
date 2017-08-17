@@ -19,6 +19,14 @@ public class Application {
 		
 		ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
 		CustomerService customerService = applicationContext.getBean("customerService",CustomerService.class);
+		System.out.println(customerService);
+		/**
+		 * The below and above code have different instance names of CustomerService but
+		 * they have been specified as singleton scope in applicationContext.xml so
+		 * they will both return the same object address.
+		 */
+		CustomerService customerService1 = applicationContext.getBean("customerService",CustomerService.class);
+		System.out.println(customerService1);
 		System.out.println(customerService.findAll().get(0).getFirstName());
 	}
 
