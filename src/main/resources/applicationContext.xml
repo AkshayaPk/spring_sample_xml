@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-<bean name="customerRepository" class="com.pluralsight.repository.HibernateCustomerRespositoryImpl"></bean>
+<!-- We need to tell that this application uses annotations like @Value -->
+<context:annotation-config></context:annotation-config>
+<!-- Providing the location for the properties file -->
+<context:property-placeholder location="app.properties"/>
+
+<!-- Specifying the property name and value to inject from the app.properties file -->
+<bean name="customerRepository" class="com.pluralsight.repository.HibernateCustomerRespositoryImpl">
+<!--  <property name="dbUsername" value="${dbUsername}"></property>-->
+
+</bean>
 <!-- Setting the scope to Singleton & prototype for customerService -->
 <bean name="customerService" class="com.pluralsight.service.CustomerServiceImpl"  autowire="byType" scope="prototype">
 <!-- The below line represents the wiring of our repository tier to our service tier so
